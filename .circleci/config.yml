@@ -21,7 +21,8 @@ jobs:
       # - run: npm run style
       # - run: npm run lint
       - run: npm run build:prod
-      - run: npm run test:coverage -- --watch=false
+      # - run: npm run test:coverage -- --watch=false
+      - run: npm run test --waatch=false
       - run: npm run e2e
       - run:
           name: Tar & Gzip compiled app
