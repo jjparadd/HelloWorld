@@ -27,8 +27,8 @@ jobs:
       - run:
           name: Tar & Gzip compiled app
           command: tar zcf dist.tar.gz dist/HelloWorld
-      # - store_artifacts:
-      #     path: dist.tar.gz
+      - store_artifacts:
+          path: dist.tar.gz
 workflows:
   version: 2
   build-and-test:
