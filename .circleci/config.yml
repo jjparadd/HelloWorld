@@ -26,7 +26,7 @@ jobs:
       - run: npm run e2e
       - run:
           name: Tar & Gzip compiled app
-          command: tar zcf dist.tar.gz dist/local-weather-app
+          command: tar zcf dist.tar.gz dist/HelloWorld
       - store_artifacts:
           path: dist.tar.gz
 workflows:
