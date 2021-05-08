@@ -7,10 +7,14 @@
     "build": "ng build",
     "build:prod": "ng build --prod" ,
     "test": "ng test",
+    "test:prod": "npm test -- --browsers ChromiumNoSandbox --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prenow:publish": "npm run build:prod",
-    "now:publish": "now --platform-version 2 dist/HelloWorld"
+    "now:publish": "now --platform-version 2 dist/HelloWorld",
+    "docker:build": "docker build . -t helloworld",
+    "docker:run" : "docker run -it helloworld",
+    "build:integration": "cross-conf-env docker image build -f integration.Dockerfile . -t $npm_package_config_imageRepo:latest"
   },
   "private": true,
   "dependencies": {
