@@ -1,0 +1,17 @@
+<div *ngIf ="current$ | async as current; else loading">
+    <div>
+        <p>{{current.city}}, {{current.country}}</p>
+        <span>{{current.date | date:'fullDate'}}</span>
+    </div>
+    <div>
+        <img [src]='current.image'>
+        <span>{{current.temperature | number:'1.0-0'}}˚F</span>
+    </div>
+    <div>
+        {{current.description}}
+    </div>
+    <button mat-raised-button color="primary">Primary</button>
+</div>
+<ng-template #loading>
+    Loading...
+</ng-template>
