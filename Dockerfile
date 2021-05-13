@@ -1,3 +1,2 @@
-FROM duluca/minimal-node-web-server:lts-alpine 
-WORKDIR /usr/src/app
-COPY dist/HelloWorld public
+FROM duluca/minimal-nginx-web-server:1-alpine
+COPY dist/HelloWorld /var/www
