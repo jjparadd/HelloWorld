@@ -9,14 +9,14 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - restore_cache:
-        keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
+      - restore_cache:
+          keys: 
+            - v1-dependencies-{{ checksum "package-lock.json" }}
       - run: npm ci
-      - save_cache:
-        key: v1-dependencies-{{ checksum "package-lock.json" }}
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
           paths:
-            - ~/.npm
+            - ~/.npm
       - run: npm test -- --watch=false --code-coverage
       - run: npm run e2e
       - store_test_results:
