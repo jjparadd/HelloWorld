@@ -31,6 +31,7 @@ module.exports = function (config) {
         { type: 'html' },
         { type: 'text-summary' }
       ],
+      fixWebpackSourcePaths: true,
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, 'coverage'),
