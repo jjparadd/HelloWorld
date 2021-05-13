@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --prod" ,
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "test:prod": "npm test -- --browsers ChromiumNoSandbox --watch=false",
     "lint": "ng lint",
@@ -13,8 +13,16 @@
     "prenow:publish": "npm run build:prod",
     "now:publish": "now --platform-version 2 dist/HelloWorld",
     "docker:build": "docker build . -t helloworld",
-    "docker:run" : "docker run -it helloworld",
-    "build:integration": "cross-conf-env docker image build -f integration.Dockerfile . -t $npm_package_config_imageRepo:latest"
+    "docker:run": "docker run -it helloworld",
+    "build:integration": "cross-conf-env docker image build -f integration.Dockerfile . -t $npm_package_config_imageRepo:latest",
+    "imageRepo": "556322479585.dkr.ecr.us-east-2.amazonaws.com/helloworld-integration",
+    "awsRegion": "us-east-2",
+    "awsEcsCluster": "fargate-cluster",
+    "awsService": "helloworld-service",
+    "aws:login:win": "cross-conf-env aws ecr get-login --no-include-email --region $npm_package_config_awsRegion > dockerLogin.cmd && call dockerLogin.cmd && del dockerLogin.cmd",
+    "aws:login:mac": "eval $(aws ecr get-login --no-include-email --region $npm_package_config_awsRegion)",
+    "aws:login": "aws ecr get-login-password --region $npm_package_config_awsRegion | docker login --username AWS --password-stdin $npm_package_config_imageRepo",
+    "aws:deploy": "cross-conf-env docker run"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +37,7 @@
     "@angular/platform-browser": "~11.2.12",
     "@angular/platform-browser-dynamic": "~11.2.12",
     "@angular/router": "~11.2.12",
+    "mrm-task-npm-docker": "^1.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  coveralls: coveralls/coveralls@1.0.4
 jobs:
   build:
     docker:
@@ -7,6 +9,13 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - run: npm test -- --watch=false --code-coverage
+      - run: npm run e2e
+      - store_test_results:
+          path: ./test_results
+      - store_artifacts:
+          path: ./coverage
+      - coveralls/upload
       - run:
           name: Execute Pipeline (Build Source -> Test -> Build Web Server)
           command: |
